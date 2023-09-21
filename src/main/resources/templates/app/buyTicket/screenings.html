@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Screenings</title>
+</head>
+<body>
+<h3>Choose your session;</h3>
+
+<div th:each="screening:${chooseScreenings}">
+    <a th:text="${'id: ' + screening.getId() + '| ' + 'Film name: '  + screening.getMovie().getTitle() + '| '+ 'Auditorium: ' +
+    screening.getAuditorium().getName() + '| '+ 'Start time: ' + screening.getStart_time() + '| '+
+    'Film duration: ' + screening.getMovie().getDuration_min() + '| '+ 'Ticket standart price: ' + screening.getStandardPrice()}" th:href="@{/panel/{id}(id = ${screening.getId()})}">
+    </a>
+</div>
+
+</body>
+</html>

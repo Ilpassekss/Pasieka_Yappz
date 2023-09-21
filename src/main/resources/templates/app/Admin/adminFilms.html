@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Film administration: </h3><br>
+<div th:each="movie:${movies}" >
+   <a th:text="${'id: ' + movie.getId() + '| ' + 'Film name: '  + movie.getTitle() + '| '+ 'Film director: ' +
+    movie.getDirector() + '| '+ 'Film duration: ' +movie.getDuration_min()}" th:href="@{/admin/filmEdit/{filmID}/editPage(filmID = ${movie.getId()})}"></a>
+</div>
+<hr/>
+<a href="/admin/newMovie" >Add new film</a>
+</body>
+</html>

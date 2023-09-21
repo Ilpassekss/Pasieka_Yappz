@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New film</title>
+</head>
+<body>
+<h3>Add info about new movie</h3>
+<form th:method="POST" th:action="@{/admin/newMovie}" th:object="${movie}">
+
+    <label for="title">Enter movie title:</label>
+    <input type="text" th:field="*{title}" id="title"/>
+    <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name error</div>
+    <br>
+    <label for="director">Enter movie director:</label>
+    <input type="text" th:field="*{director}" id="director"/>
+    <div style="color: red" th:if="${#fields.hasErrors('director')}" th:errors="*{director}">director error</div>
+    <br>
+    <label for="casting">Enter movie cast:</label>
+    <input type="text" th:field="*{casting}" id="casting"/>
+    <div style="color: red" th:if="${#fields.hasErrors('casting')}" th:errors="*{casting}">cast error</div>
+    <br>
+    <label for="description">Enter movie description:</label>
+    <input type="text" th:field="*{description}" id="description"/>
+    <div style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">description error</div>
+    <br>
+    <label for="duration_min">Enter movie duration:</label>
+    <input type="text" th:field="*{duration_min}" id="duration_min"/>
+    <div style="color: red" th:if="${#fields.hasErrors('duration_min')}" th:errors="*{duration_min}">duration_min error</div>
+    <br>
+    <input type="submit" value="Add to list!!!"/>
+</form>
+</body>
+</html>

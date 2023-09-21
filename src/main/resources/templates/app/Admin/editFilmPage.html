@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Movie edit page
+<form th:method="post" th:action="@{/admin/filmEdit/{filmID}(filmID = ${movie.getId()})}" th:object="${movie}">
+    <input type="hidden" th:field="*{id}" />
+    <label >Movie id: </label>
+    <label th:text="*{id}"></label>
+<br>
+    <label for="title">Movie title: </label>
+    <input type="text" th:field="*{title}" id="title"/>
+    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</div>
+<br>
+    <label for="director">Movie director: </label>
+    <input type="text" th:field="*{director}" id="director"/>
+    <div style="color:red" th:if="${#fields.hasErrors('director')}" th:errors="*{director}">Name Error</div>
+    <br>
+    <label for="casting">Movie casting: </label>
+    <input type="text" th:field="*{casting}" id="casting"/>
+    <div style="color:red" th:if="${#fields.hasErrors('casting')}" th:errors="*{casting}">Name Error</div>
+    <br>
+    <label for="description">Movie description: </label>
+    <input type="text" th:field="*{description}" id="description"/>
+    <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name Error</div>
+    <br>
+    <label for="duration_min">Movie duration (min): </label>
+    <input type="text" th:field="*{duration_min}" id="duration_min"/>
+    <div style="color:red" th:if="${#fields.hasErrors('duration_min')}" th:errors="*{duration_min}">Name Error</div>
+    <br>
+<input type="submit" value="Edit film">
+<br>
+</form>
+<form th:method="post" th:action="@{/admin/filmEdit/{filmID}/delete(filmID = ${movie.getId()})}" >
+    <input type="submit" value="Delete movie">
+</form>
+
+<br>
+
+
+if you delete film, you also delete all screenings and and reservations!!!!
+</body>
+</html>

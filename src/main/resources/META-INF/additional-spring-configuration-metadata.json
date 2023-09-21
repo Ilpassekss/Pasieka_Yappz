@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.mvc.annotation.preferred-json-mapper",
+      "type": "java.lang.String",
+      "description": "Description for spring.mvc.annotation.preferred-json-mapper."
+  }
+] }

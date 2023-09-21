@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin panel</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/admin/filmsAdmin}">
+<input type="submit" value="Films">
+</form>
+<form th:method="GET" th:action="@{/admin/screeningsAdmin}">
+    <input type="submit" value="Screenings">
+</form>
+
+</body>
+</html>

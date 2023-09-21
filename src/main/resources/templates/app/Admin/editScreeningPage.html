@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Screening edit page
+<form th:method="post" th:action="@{/admin/screeningEdit/{screeningID}(screeningID = ${screening.getId()})}" th:object="${screening}">
+    <input type="hidden" th:field="*{id}" />
+    <input type="hidden" th:field="*{movieID}" />
+    <input type="hidden" th:field="*{auditoriumID}" />
+    <label >Screening id: </label>
+    <label th:text="*{id}"></label>
+    <br>
+    <label >Movie id: </label>
+    <label th:text="*{movieID}"></label>
+    <br>
+    <label >Auditorium id: </label>
+    <label th:text="*{auditoriumID}"></label>
+    <br>
+    <label for="screening_date">Screening date: </label>
+    <input type="text" th:field="*{screening_date}" id="screening_date"/>
+    <div style="color:red" th:if="${#fields.hasErrors('screening_date')}" th:errors="*{screening_date}">Name Error</div>
+    <br>
+    <label for="start_time">Start time: </label>
+    <input type="text" th:field="*{start_time}" id="start_time"/>
+    <div style="color:red" th:if="${#fields.hasErrors('start_time')}" th:errors="*{start_time}">Name Error</div>
+    <br>
+    <label for="standardPrice">Movie duration (min): </label>
+    <input type="text" th:field="*{standardPrice}" id="standardPrice"/>
+    <div style="color:red" th:if="${#fields.hasErrors('standardPrice')}" th:errors="*{standardPrice}">Name Error</div>
+    <br>
+    <input type="submit" value="Edit film">
+    <br>
+</form>
+
+    <form th:method="post" th:action="@{/admin/screeningEdit/{screeningID}/delete(screeningID = ${screening.getId()})}">
+        <input type="submit" value="Delete screening">
+    </form>
+
+<br>
+if you delete screening you also delete all reservations for this screening!!!!!
+</body>
+</html>

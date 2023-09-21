@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Screenings administration:</h3>
+<br>
+<div th:each="screening:${screenings}">
+<a th:text="${'id: ' + screening.getId() + '| ' + 'Film name: '  + screening.getMovie().getTitle() + '| '+ 'Auditorium: ' +
+    screening.getAuditorium().getName() + '| '+ 'Start time: ' + screening.getStart_time() + '| '+
+    'Film duration: ' + screening.getMovie().getDuration_min() + '| '+ 'Ticket standart price: ' + screening.getStandardPrice()}"
+th:href="@{/admin/screeningEdit/{screeningID}/scr (screeningID = ${screening.getId()})}">
+</a>
+</div>
+<hr/>
+<a href="/admin/newScreening">Add new screening to schedule</a>
+</body>
+</html>

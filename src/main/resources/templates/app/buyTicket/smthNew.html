@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>final page</title>
+</head>
+<body>
+final reservation info
+
+
+<span th:text="${ 'Ticket price: ' + resultReservation.getPaid()}"></span><br>
+<span th:text="${ 'Screening id: ' + resultReservation.getScreeningID()}"></span><br>
+<span th:text="${ 'Seat id: ' + resultReservation.getSeatReservationID()}"></span><br>
+<span th:text="${ 'Reservation type: ' + resultReservation.getReservationType()}"></span><br>
+<span th:text="${ 'Active status: ' + resultReservation.active}"></span><br>
+<form th:method="POST" th:action="@{/panel/finalResults}">
+    <input type="submit" value="Reserve">
+</form>
+
+
+</body>
+</html>

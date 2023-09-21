@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Panel</title>
+</head>
+
+<style>
+    .square {
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        position: absolute;
+    }
+    .info{
+        position: absolute;
+    }
+    .bSquare {
+        width: 100px;
+        height: 100px;
+        background-color: brown;
+        position: absolute;
+    }
+</style>
+<body>
+
+<div th:each="seat : ${seatsList}" class="square" th:style="'left: ' + ((${seat.getNum()}-1)*105) + 'px; top:' + ((${seat.getRow()}-1)* 105) + 'px;'">
+    <span th:text="'Place: ' + ${seat.getNum()} "></span><br>
+    <span th:text="'Row: ' + ${seat.getRow()}"></span>
+</div>
+
+<div th:each="bPlaces : ${busyPlaces}" class="bSquare" th:style="'left: ' + ((${bPlaces.getNum()}-1)*105) + 'px; top:' + ((${bPlaces.getRow()}-1)* 105) + 'px;'">
+    <span th:text="'Place: ' + ${bPlaces.getNum()} "></span><br>
+    <span th:text="'Row: ' + ${bPlaces.getRow()}"></span>
+</div>
+
+
+<br>
+<div class="info" th:style="'left: ' + 0 + 'px; top:' +  400 + 'px;'">
+
+
+    <span th:text="${ 'screening id: '+ screening.getId()}"></span><br>
+    <span th:text="${ 'price: ' + screening.getStandardPrice()}"></span><br>
+    <span th:text="${ 'start time: ' + screening.getStart_time()}"></span><br>
+    <span th:text="${ 'auditorium: ' + screening.getAuditoriumID()}"></span><br>
+    <span th:text="${ 'film name: ' + film.getTitle()}"></span><br>
+    <span th:text="${ 'film duration: ' + film.getDuration_min() + 'min'}"></span><br>
+    <span th:text="${ 'auditorium name: ' + auditorium.getName()}"></span><br>
+    <span th:text="${ 'auditorium size: ' + auditorium.getSeatsNumber() + 'min'}"></span>
+    <br>
+    <form th:method="POST" th:action="@{/panel/{id}(id = ${screening.getId()})}" >
+
+        <label >Select tariff:</label>
+        <label>
+            <select class="form-control" name="reservationType">
+                <option >Select a type: </option>
+                <option th:each="reservationType : ${reservations.getReservationTypes()}" th:value="${reservationType.toString()}" th:text="${reservationType}">Film Name</option>
+            </select>
+        </label>
+        <br>
+
+        <label for="seatNum">Enter seat num:</label><br>
+        <input type="number" name = "num" id="seatNum"/><br>
+        <label for="seatRow">Enter seat row:</label><br>
+        <input type="number" name = "row" id="seatRow"/><br>
+        <br>
+        <input type="submit" value="Make reservation" />
+
+    </form>
+
+</div>
+
+</body>
+</html>

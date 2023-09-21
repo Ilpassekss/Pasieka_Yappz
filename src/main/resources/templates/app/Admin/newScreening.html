@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New screening</title>
+</head>
+<body>
+<h3>Add new screening</h3>
+
+<form method="POST" th:action="@{/admin/newScreening}"  >
+
+    <label >Select movie:</label>
+    <label>
+        <select class="form-control" name="movieID">
+            <option value="default">Select a film</option>
+            <option th:each="film : ${movies_list}" th:value="${film.getId()}" th:text="${film.getTitle()}">Film Name</option>
+        </select>
+    </label>
+<hr/>
+    <label >Select auditorium:</label>
+    <label>
+        <select name="audID">
+            <option value="default">Select a auditorium</option>
+            <option th:each="aud : ${auditoriums_list}" th:value="${aud.getId()}" th:text="${aud.getName()}">Auditorium Name</option>
+        </select>
+    </label>
+    <hr/>
+
+    <label for="time">Enter start time(hh:mm:ss):</label>
+    <input type="text" name = "time" id="time" pattern="([01]\d|2[0-3]):[0-5]\d:[0-5]\d" required/>
+
+    <br>
+    <label for="date">Enter start date(dd-mm-yyyy):</label>
+    <input type="text" name = "date" id ="date" pattern="\d{2}-\d{2}-\d{4}" required/>
+    <br>
+    <label for="price">Enter standard price:</label>
+    <input type="text" name = "standardPrice" id="price" />
+    <br>
+
+
+    <input type="submit" value="Add to list!!!"/>
+</form>
+</body>
+</html>
