@@ -3,11 +3,13 @@ package com.kursach.cinema.Model;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Movie {
 
     private long id;
@@ -26,27 +28,5 @@ public class Movie {
     @Min(value = 1, message = "Film duration can not be less than 1 minute")
     private int duration_min;
 
-    public Movie(){
 
-    }
-
-    public Movie(String title, String director, String casting, String description, int duration_min) {
-        this.title = title;
-        this.director = director;
-        this.casting = casting;
-        this.description = description;
-        this.duration_min = duration_min;
-    }
-
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", director='" + director + '\'' +
-                ", cast='" + casting + '\'' +
-                ", description='" + description + '\'' +
-                ", filmDuration=" + duration_min +
-                '}';
-    }
 }

@@ -1,13 +1,15 @@
 package com.kursach.cinema.Model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@ToString
 public class Reservation {
 
     private ArrayList<String> reservationTypes = new ArrayList<>();
@@ -41,16 +43,4 @@ public class Reservation {
         reservationTypes.add("OLD");
     }
 
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "id=" + id +
-                ", screeningID=" + screeningID +
-                ", employeeID=" + employeeID +
-                ", paid=" + paid +
-                ", seatReservationID=" + seatReservationID +
-                ", active=" + active +
-                ", reservationType='" + reservationType + '\'' +
-                '}';
-    }
 }

@@ -18,11 +18,16 @@ public class AuditoriumDAO {
     }
 
     public List<Auditorium> indexAuditoriums() {
-        return jdbcTemplate.query("select * from auditorium", new BeanPropertyRowMapper<>(Auditorium.class));
+
+        String sql = "select * from auditorium";
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Auditorium.class));
     }
 
     public Auditorium getAuditorium(long id){
+
         String sql = "select  * from auditorium where id = ?";
+
         return jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Auditorium.class)).stream().findAny().orElse(null);
     }
 }

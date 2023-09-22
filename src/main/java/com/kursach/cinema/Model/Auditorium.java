@@ -4,9 +4,11 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class Auditorium {
     private long id;
     @NotEmpty
@@ -14,13 +16,4 @@ public class Auditorium {
     @NotEmpty
     private int seatsNumber;
 
-
-    @Override
-    public String toString() {
-        return "Auditorium{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", seats_number=" + seatsNumber +
-                '}';
-    }
 }

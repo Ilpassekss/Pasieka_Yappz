@@ -1,10 +1,13 @@
 package com.kursach.cinema.Model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
 public class Seat {
 
 
@@ -20,16 +23,4 @@ public class Seat {
         this.auditorium = auditorium;
     }
 
-    public Seat(){}
-
-    @Override
-    public String toString() {
-        return "Seat{" +
-                "id=" + id +
-                ", row=" + row +
-                ", num=" + num +
-                ", auditorium=" + auditorium +
-                ", auditoriumID=" + auditoriumID +
-                '}';
-    }
 }

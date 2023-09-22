@@ -3,11 +3,14 @@ package com.kursach.cinema.Model;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Screening {
 
     private long id;
@@ -32,28 +35,4 @@ public class Screening {
         this.standardPrice = standardPrice;
     }
 
-    public Screening(){}
-
-    @Override
-    public String toString() {
-        return "Screening{" +
-                "id=" + id +
-                "movie=" + movieID +
-                ", auditorium=" + auditoriumID +
-                ", screening_date='" + screening_date + '\'' +
-                ", start_time='" + start_time + '\'' +
-                ", standardPrice=" + standardPrice +
-                '}';
-    }
-
-
-    public String toString1() {
-        return "Screening{" +
-                "movie=" + movie.getTitle() +
-                ", auditorium=" + auditorium.getName() +
-                ", screening_date='" + screening_date + '\'' +
-                ", start_time='" + start_time + '\'' +
-                ", standardPrice=" + standardPrice +
-                '}';
-    }
 }

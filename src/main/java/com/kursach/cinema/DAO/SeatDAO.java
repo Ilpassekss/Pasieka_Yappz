@@ -39,8 +39,8 @@ public class SeatDAO {
     }
 
     public List<Seat> getBusySeatsInScreening(long auditoriumID, long screeningID){
-        ReservationDAO reservationDAO = new ReservationDAO(jdbcTemplate);
 
+        ReservationDAO reservationDAO = new ReservationDAO(jdbcTemplate);
 
         List<Seat> seats = getSeatsInAuditorium(auditoriumID);
         List<Reservation> reservations = reservationDAO.getAllReservations();
@@ -56,7 +56,9 @@ public class SeatDAO {
     }
 
     public Seat getSeatIDForEachOtherParams(int number, int row, long auditoriumID){
+
         String sql = "select * from seat where row = ? and number = ? and auditorium_id = ?;";
+
         try {
             return jdbcTemplate.queryForObject(sql, new Object[]{row, number, auditoriumID}, new SeatRowMapper());
         }catch (EmptyResultDataAccessException e){
@@ -69,13 +71,12 @@ public class SeatDAO {
 class SeatRowMapper implements RowMapper<Seat>{
     @Override
     public Seat mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Seat seat = new Seat();
-        seat.setId(rs.getLong("id"));
-        seat.setRow(rs.getInt("row"));
-        seat.setNum(rs.getInt("number"));
-        seat.setAuditoriumID(rs.getInt("auditorium_id"));
 
-
-        return seat;
+        return Seat.builder()
+                .id(rs.getLong("id"))
+                .row(rs.getInt("row"))
+                .num(rs.getInt("number"))
+                .auditoriumID(rs.getInt("auditorium_id"))
+                .build();
     }
 }

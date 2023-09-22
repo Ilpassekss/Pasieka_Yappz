@@ -56,25 +56,34 @@ public class ScreeningDAO {
 
     //add new screening into db
     public void addScreening(Screening screening) {
+
         String sql = "INSERT INTO public.screaning( movie_id, auditorium_id, screaning_date, start_time, " +
                 "standard_price) VALUES ( ?, ?, cast(? as date), cast(? as time without time zone), ?)";
+
         jdbcTemplate.update(sql, screening.getMovieID(), screening.getAuditoriumID(), screening.getScreening_date(),
                 screening.getStart_time(), screening.getStandardPrice());
     }
 
 
     public Screening getScreening(long id){
+
         String sql ="select * from screaning where id = ?";
+
         return jdbcTemplate.query(sql, new Object[]{id}, new ScreeningRowMapper()).stream().findAny().orElse(null);
     }
 
     public void updateScreening(Screening screening){
-        String sql = "update screaning set screaning_date = cast( ? as date) , start_time = cast( ? as time without time zone) , standard_price = ? where id=?";
+
+        String sql = "update screaning set screaning_date = cast( ? as date) " +
+                ", start_time = cast( ? as time without time zone) , standard_price = ? where id=?";
+
         jdbcTemplate.update(sql, screening.getScreening_date(), screening.getStart_time(), screening.getStandardPrice(), screening.getId());
     }
 
     public void deleteScreening(long screeningID){
+
         String sql = "delete from reservation where id = ?";
+
         jdbcTemplate.update(sql, screeningID);
     }
 }
@@ -83,15 +92,14 @@ class ScreeningRowMapper implements RowMapper<Screening>{
 
     @Override
     public Screening mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Screening screening = new Screening();
 
-        screening.setId(rs.getLong("id"));
-        screening.setMovieID(rs.getLong("movie_id"));
-        screening.setAuditoriumID(rs.getLong("auditorium_id"));
-        screening.setScreening_date(rs.getString("screaning_date"));
-        screening.setStart_time(rs.getString("start_time"));
-        screening.setStandardPrice(rs.getLong("standard_price"));
-
-        return screening;
+        return Screening.builder()
+                .id(rs.getLong("id"))
+                .movieID(rs.getLong("movie_id"))
+                .auditoriumID(rs.getLong("auditorium_id"))
+                .screening_date(rs.getString("screaning_date"))
+                .start_time(rs.getString("start_time"))
+                .standardPrice(rs.getLong("standard_price"))
+                .build();
     }
 }
